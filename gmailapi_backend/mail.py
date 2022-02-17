@@ -40,7 +40,7 @@ class GmailBackend(BaseEmailBackend):
             
         raw_message = {'raw': base64.urlsafe_b64encode(email_message.message().as_bytes()).decode()}
 
-        return self.service.users().drafts().create(userId=self.user_id, body=raw_message)
+        return self.service.users().drafts().create(userId=self.user_id, body=raw_message).execute()
         # return self.service.users().messages().send(userId=self.user_id, body=raw_message)
 
     def send_messages(self, email_messages):
